@@ -4,6 +4,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -73,11 +74,9 @@ public class MainActivity extends ActionBarActivity implements ShakeListener.OnS
 
     private void randomImg(ImageView imageView) {
         int num = mRandom.nextInt(6);
-        if (num == 0) {
-            num = 1;
-        }
-        mCount += num;
-        imageView.setImageResource(mImgs[num-1]);
+
+        mCount += (num + 1);
+        imageView.setImageResource(mImgs[num]);
     }
 
     private void randomImgAnim(final ImageView imageView) {
@@ -85,9 +84,15 @@ public class MainActivity extends ActionBarActivity implements ShakeListener.OnS
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while(!isStopAnim) {
-                    int num = mRandom.nextInt(4);
-                    imageView.setImageResource(mImgsAnim[num]);
+                while (!isStopAnim) {
+                    imageView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            int num = mRandom.nextInt(4);
+                            imageView.setImageResource(mImgsAnim[num]);
+                        }
+                    });
+                    SystemClock.sleep(80);
                 }
             }
         }).start();
@@ -101,8 +106,8 @@ public class MainActivity extends ActionBarActivity implements ShakeListener.OnS
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-//                anim();
-                showRadome();
+                anim();
+//                showRadome();
                 shakeListener.start();
             }
         }, 600);
@@ -110,7 +115,7 @@ public class MainActivity extends ActionBarActivity implements ShakeListener.OnS
 
     private void anim() {
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 1.0f);
-        alphaAnimation.setDuration(2000);
+        alphaAnimation.setDuration(500);
         shakeLayout.startAnimation(alphaAnimation);
         alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -118,15 +123,20 @@ public class MainActivity extends ActionBarActivity implements ShakeListener.OnS
                 isStopAnim = false;
                 Log.i("youzh", "onAnimationStart: " + isStopAnim);
                 randomImgAnim(shakeImg1);
-//                randomImgAnim(shakeImg2);
-//                randomImgAnim(shakeImg2);
+                randomImgAnim(shakeImg2);
+                randomImgAnim(shakeImg3);
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
                 isStopAnim = true;
                 Log.i("youzh", "onAnimationEnd: " + isStopAnim);
-                showRadome();
+                shakeLayout.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showRadome();
+                    }
+                });
             }
 
             @Override
