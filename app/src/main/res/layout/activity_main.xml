@@ -13,40 +13,23 @@
         android:text="摇一摇"
         android:textSize="18sp" />
 
-    <LinearLayout
+    <!--<LinearLayout-->
+    <!--android:id="@+id/shake_layout"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:orientation="vertical">-->
+    <com.youmu.wangyilotteryshake.ShakeLayout
         android:id="@+id/shake_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:layout_centerInParent="true" />
+    <!--<include-->
+    <!--android:id="@+id/shake_layout"-->
+    <!--layout="@layout/layout_shake"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true" />-->
 
-        <ImageView
-            android:id="@+id/shake_img1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-
-            android:src="@mipmap/dice1" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/shake_img2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:src="@mipmap/dice2" />
-
-            <ImageView
-                android:id="@+id/shake_img3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="5dp"
-                android:src="@mipmap/dice3" />
-        </LinearLayout>
-
-    </LinearLayout>
+    <!--</LinearLayout>-->
 </RelativeLayout>
