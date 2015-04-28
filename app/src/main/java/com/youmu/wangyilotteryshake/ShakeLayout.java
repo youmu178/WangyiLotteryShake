@@ -1,6 +1,5 @@
 package com.youmu.wangyilotteryshake;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.SystemClock;
 import android.util.AttributeSet;
@@ -109,7 +108,7 @@ public class ShakeLayout extends FrameLayout {
                     randomImgAnim(shakeView.shakeImg2);
                     randomImgAnim(shakeView.shakeImg3);
                 } else {
-                    ObjectAnimator.ofFloat(shakeView.shakeImg1,"",);
+//                    ObjectAnimator.ofFloat(shakeView.shakeImg1,"",);
                 }
 
             }
